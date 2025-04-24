@@ -13,12 +13,15 @@ def decrypt_type7(encoded):
 
     for i in range(0, len(encoded), 2):
         b = int(encoded[i:i+2], 16)
+        if index >= len(xlat):
+            print("⚠️ Error: Index out of xlat table range.")
+            break  # ya return result
         result += chr(b ^ xlat[index])
         index += 1
 
     return result
 
 # Ask user for input
-encoded_password = input("Enter Cisco Type 7 encoded password: ")
+encoded_password = input("👮‍♂️ Enter Cisco Type 7 encoded password: ")
 decoded_password = decrypt_type7(encoded_password)
 print(f"🔓 Decrypted Password: {decoded_password}")
